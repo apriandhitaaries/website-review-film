@@ -51,7 +51,7 @@
                             <i class="bi bi-list"></i>
                         </a>
                     </li>
-                    <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>\
+                    <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>
                 </ul>
                 <!--end::Start Navbar Links-->
                 <!--begin::End Navbar Links-->
@@ -172,9 +172,15 @@
                         data-accordion="false"
                         id="navigation">
                         <li class="nav-item menu-open">
-                            <a href="/cast" class="nav-link active">
+                            <a href="{{ route('casts.index') }}" class="nav-link active">
                                 <i class="nav-icon bi bi-table"></i>
                                 <p>Data Pemain Film</p>
+                            </a>
+                        </li>
+                        <li class="nav-item menu-open">
+                            <a href="{{ route('genres.index') }}" class="nav-link active">
+                                <i class="nav-icon bi bi-table"></i>
+                                <p>Data Genre Film</p>
                             </a>
                         </li>
                     </ul>
@@ -242,35 +248,13 @@
 
         </main>
 
-
-        <!--begin::Footer-->
-        <footer class="app-footer">
-            <!--begin::To the end-->
-            <div class="float-end d-none d-sm-inline">Anything you want</div>
-            <!--end::To the end-->
-            <!--begin::Copyright-->
-            <strong>
-                Copyright &copy; 2014-2025&nbsp;
-                <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
-            </strong>
-            All rights reserved.
-            <!--end::Copyright-->
-        </footer>
-        <!--end::Footer-->
     </div>
     <!--end::App Wrapper-->
 
     <!--begin::Script-->
-    <!--begin::Third Party Plugin(OverlayScrollbars)-->
-    <script
-        src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
-        crossorigin="anonymous"></script>
-    <!--end::Third Party Plugin(OverlayScrollbars)-->
-    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="{{ asset('dist/js/adminlte.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"></script>
     <script>
@@ -282,6 +266,7 @@
         });
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @stack('scripts')
 

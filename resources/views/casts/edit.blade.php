@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="card">
-    <form action="/cast/{{ $cast->id }}" method="POST">
+    <form action="{{ route('casts.update', $cast->id) }}" method="POST">
         @csrf
         @method('PUT')
 
