@@ -172,6 +172,12 @@
                         data-accordion="false"
                         id="navigation">
                         <li class="nav-item menu-open">
+                            <a href="{{ route('films.index') }}" class="nav-link active">
+                                <i class="nav-icon bi bi-table"></i>
+                                <p>Data Film</p>
+                            </a>
+                        </li>
+                        <li class="nav-item menu-open">
                             <a href="{{ route('casts.index') }}" class="nav-link active">
                                 <i class="nav-icon bi bi-table"></i>
                                 <p>Data Pemain Film</p>
@@ -220,27 +226,7 @@
                 <!--begin::Container-->
                 <div class="container-fluid">
                     <!--begin::Row-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <h5 class="card-title">@yield('name_page', "Dashboard")</h5>
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
-                                            <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
-                                            <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
-                                            <i class="bi bi-x-lg"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                @yield('content')
-                            </div>
-                            <!-- /.card -->
-                        </div>
-                        <!-- /.col -->
-                    </div>
+                    @yield('content')
                     <!--end::Row-->
                 </div>
                 <!--end::Container-->
@@ -253,9 +239,9 @@
 
     <!--begin::Script-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
