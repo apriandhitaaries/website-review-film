@@ -30,7 +30,7 @@ class GenreController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'nama' => 'required|max:255',
+            'nama' => 'required|max:100',
         ]);
 
         Genre::create($validateData);
@@ -42,7 +42,7 @@ class GenreController extends Controller
      */
     public function show(Genre $genre)
     {
-        return view('genres.show', ['genre'=> $genre]);
+        return view('genres.show', ['genre' => $genre]);
     }
 
     /**
@@ -59,7 +59,7 @@ class GenreController extends Controller
     public function update(Request $request, Genre $genre)
     {
         $validateData = $request->validate([
-            'nama' => 'required|max:255',
+            'nama' => 'required|max:100',
         ]);
 
         $genre->update($validateData);

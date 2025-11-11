@@ -7,46 +7,43 @@
 @endpush
 
 @section('content')
-
-<div class="card-body">
-    <a href="{{ route('genres.create') }}" class="btn btn-primary btn-sm mb-3">+ Tambah Genre Film</a>
-    <table id="genres_table" class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Nama Genre</th>
-                <th style="width: 120px">Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($genres as $genre)
-            <tr>
-                <td>{{ $genre->nama }}</td>
-                <td>
-                    <a href="{{ route('genres.show', $genre->id) }}" class="btn btn-info btn-sm">
-                        <i class="bi bi-eye-fill"></i>
-                    </a>
-                    <a href="{{ route('genres.edit', $genre->id) }}" class="btn btn-warning btn-sm">
-                        <i class="bi bi-pencil-fill"></i>
-                    </a>
-                    <form action="{{ route('genres.destroy', $genre->id) }}" method="POST" class="d-inline" id="delete-form-{{ $genre->id }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="button" class="btn btn-danger btn-sm"
-                            onclick="deleteConfirmation(this)"
-                            data-id="{{ $genre->id }}"
-                            data-nama="{{ $genre->nama }}">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
-                    </form>
-                </td>
-            </tr>
-            @empty
-            <tr>
-                <td colspan="3" class="text-center">Tidak ada data genre film.</td>
-            </tr>
-            @endforelse
-        </tbody>
-    </table>
+<div class="card">
+    <div class="card-body">
+        <a href="{{ route('genres.create') }}" class="btn btn-primary btn-sm mb-3">+ Tambah Genre Film</a>
+        <table id="genres_table" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nama Genre</th>
+                    <th style="width: 120px">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($genres as $genre)
+                <tr>
+                    <td>{{ $genre->nama }}</td>
+                    <td>
+                        <a href="{{ route('genres.show', $genre->id) }}" class="btn btn-info btn-sm">
+                            <i class="bi bi-eye-fill"></i>
+                        </a>
+                        <a href="{{ route('genres.edit', $genre->id) }}" class="btn btn-warning btn-sm">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+                        <form action="{{ route('genres.destroy', $genre->id) }}" method="POST" class="d-inline" id="delete-form-{{ $genre->id }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-danger btn-sm"
+                                onclick="deleteConfirmation(this)"
+                                data-id="{{ $genre->id }}"
+                                data-nama="{{ $genre->nama }}">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 
 @endsection
