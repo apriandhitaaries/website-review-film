@@ -70,8 +70,77 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-        </div>
 
+            <div class="form-group" id="repeater">
+                <div>
+                    <label>Aktor & Peran</label>
+                </div>
+
+                <div class="mb-2">
+                    <button type="button" data-repeater-create class="btn btn-success btn-sm">
+                        + Tambah Aktor
+                    </button>
+                </div>
+
+                <div data-repeater-list="casts">
+                    @if(old('casts'))
+                    @foreach(old('casts') as $oldCast)
+                    <div data-repeater-item class="row mb-2">
+                        <div class="col-md-5 form-group">
+                            <select name="cast_id" class="form-control" required>
+                                <option value="">-- Pilih Aktor --</option>
+                                @foreach ($all_casts as $cast)
+                                <option value="{{ $cast->id }}" {{ $oldCast['cast_id'] == $cast->id ? 'selected' : '' }}>
+                                    {{ $cast->nama }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-5 form-group">
+                            <input type="text" name="peran" class="form-control"
+                                placeholder="Nama Peran" required value="{{ $oldCast['peran'] }}" />
+                        </div>
+
+                        <div class="col-md-2">
+                            <button type="button" data-repeater-delete class="btn btn-danger btn-sm">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                    @endforeach
+
+                    @else
+                    @foreach($film->filmCasts as $existingCast)
+                    <div data-repeater-item class="row mb-2">
+                        <div class="col-md-5 form-group">
+                            <select name="cast_id" class="form-control" required>
+                                <option value="">-- Pilih Aktor --</option>
+                                @foreach ($all_casts as $cast)
+                                <option value="{{ $cast->id }}" {{ $existingCast->id == $cast->id ? 'selected' : '' }}>
+                                    {{ $cast->nama }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-5 form-group">
+                            <input type="text" name="peran" class="form-control"
+                                placeholder="Nama Peran" required
+                                value="{{ $existingCast->pivot->peran }}" />
+                        </div>
+
+                        <div class="col-md-2">
+                            <button type="button" data-repeater-delete class="btn btn-danger btn-sm">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                    @endforeach
+                    @endif
+                </div>
+            </div>
+        </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Simpan</button>
             <a href="{{ route('films.index') }}" class="btn btn-default">Batal</a>
@@ -81,6 +150,34 @@
 @endsection
 
 @push('scripts')
+
+<script>
+    $(document).ready(function() {
+        $('#repeater').repeater({
+            show: function() {
+                $(this).slideDown();
+            },
+            hide: function(deleteElement) {
+                var self = this;
+                Swal.fire({
+                    title: 'Yakin mau hapus baris ini?',
+                    text: "Aktor & peran ini akan dihapus dari formulir.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $(self).slideUp(deleteElement);
+                    }
+                })
+            }
+        });
+    });
+</script>
+
 <script>
     $(document).ready(function() {
         $('#form-edit-film').validate({
@@ -95,7 +192,8 @@
                 tahun: {
                     required: true,
                     number: true,
-                    min: 1888
+                    min: 1888,
+                    max: new Date().getFullYear()
                 },
                 poster: {
                     accept: "image/*"
