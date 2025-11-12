@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             GenreSeeder::class
         ]);
 
-        \App\Models\Cast::factory(50)->create();
+        \App\Models\Cast::factory(10)->create();
 
     }
 }
