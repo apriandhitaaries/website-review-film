@@ -57,12 +57,7 @@ class FilmController extends Controller
 
         $film->filmCasts()->attach($validateData['casts']);
 
-        return redirect('/films');
-    }
-
-    public function show(string $id)
-    {
-        //
+        return redirect(route('films.index'));
     }
 
     public function edit(Film $film)
@@ -115,7 +110,7 @@ class FilmController extends Controller
 
         $film->filmCasts()->sync($dataPivot);
 
-        return redirect('/films');
+        return redirect(route('films.index'));
     }
 
     public function destroy(Film $film)
@@ -123,6 +118,6 @@ class FilmController extends Controller
         $film->filmCasts()->detach();
         Storage::disk('public')->delete($film->poster);
         $film->delete();
-        return redirect('/films');
+        return redirect(route('films.index'));
     }
 }
