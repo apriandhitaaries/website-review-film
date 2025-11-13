@@ -26,7 +26,7 @@ class GenreController extends Controller
         ]);
 
         Genre::create($validateData);
-        return redirect('/genres');
+        return redirect(route('genres.index'));
     }
 
     public function show(Genre $genre)
@@ -47,12 +47,12 @@ class GenreController extends Controller
         ]);
 
         $genre->update($validateData);
-        return redirect('/genres');
+        return redirect(route('genres.index'));
     }
 
     public function destroy(Genre $genre)
     {
         $genre->delete();
-        return redirect('/genres');
+        return redirect(route('genres.index'));
     }
 }

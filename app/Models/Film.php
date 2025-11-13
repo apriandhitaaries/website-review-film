@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Film extends Model
 {
@@ -26,5 +26,10 @@ class Film extends Model
     {
         return $this->belongsToMany(Cast::class, 'cast_film', 'film_id', 'cast_id')
             ->withPivot('peran');
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class, 'film_id');
     }
 }

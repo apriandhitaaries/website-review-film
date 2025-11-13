@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ config('app.name', 'Laravel') }} @yield('page_title', 'Dashboard')</title>
+    <title>{{ config('app.name', ) }} @yield('page_title', 'Dashboard')</title>
 
     <!--begin::Fonts-->
     <link
@@ -32,6 +32,26 @@
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.css') }}" />
     <!--end::Required Plugin(AdminLTE)-->
 
+    <style>
+        .avatar-initials {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #6c757d;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .user-header .avatar-initials {
+            width: 90px;
+            height: 90px;
+            font-size: 36px;
+        }
+    </style>
     @stack('styles')
 </head>
 <!--end::Head-->
@@ -51,88 +71,36 @@
                             <i class="bi bi-list"></i>
                         </a>
                     </li>
-                    <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>
+                    <li class="nav-item d-none d-md-block"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
                 </ul>
                 <!--end::Start Navbar Links-->
                 <!--begin::End Navbar Links-->
                 <ul class="navbar-nav ms-auto">
-                    <!--begin::Navbar Search-->
-                    <li class="nav-item">
-                        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                            <i class="bi bi-search"></i>
-                        </a>
-                    </li>
-                    <!--end::Navbar Search-->
-
-                    <!--begin::Notifications Dropdown Menu-->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" data-bs-toggle="dropdown" href="#">
-                            <i class="bi bi-bell-fill"></i>
-                            <span class="navbar-badge badge text-bg-warning">15</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                            <span class="dropdown-item dropdown-header">15 Notifications</span>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="bi bi-envelope me-2"></i> 4 new messages
-                                <span class="float-end text-secondary fs-7">3 mins</span>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="bi bi-people-fill me-2"></i> 8 friend requests
-                                <span class="float-end text-secondary fs-7">12 hours</span>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="bi bi-file-earmark-fill me-2"></i> 3 new reports
-                                <span class="float-end text-secondary fs-7">2 days</span>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item dropdown-footer"> See All Notifications </a>
-                        </div>
-                    </li>
-                    <!--end::Notifications Dropdown Menu-->
-
-                    <!--begin::Fullscreen Toggle-->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-lte-toggle="fullscreen">
-                            <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
-                            <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none"></i>
-                        </a>
-                    </li>
-                    <!--end::Fullscreen Toggle-->
-
-                    <!--begin::User Menu Dropdown-->
                     <li class="nav-item dropdown user-menu">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img
-                                src="{{ asset('dist/assets/img/marsha.png') }}"
-                                class="user-image rounded-circle shadow"
-                                alt="User Image" />
-                            <span class="d-none d-md-inline">Apriandhita Aries Prayoga</span>
+                            <span class="avatar-initials user-image">
+                                {{ Auth::user()->initials }}
+                            </span>
+                            <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                            <!--begin::User Image-->
                             <li class="user-header text-bg-primary">
-                                <img
-                                    src="{{ asset('dist/assets/img/marsha.png') }}"
-                                    class="rounded-circle shadow"
-                                    alt="User Image" />
-                                <p>
-                                    Apriandhita Aries Prayoga - Kritikus Film Abal-abal
-                                    <small>Member since Nov. 2023</small>
+                                <span class="avatar-initials">
+                                    {{ Auth::user()->initials }}
+                                </span>
+                                <p>{{ Auth::user()->name }}
+                                    <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
                                 </p>
                             </li>
-                            <!--end::User Image-->
-                            <!--begin::Menu Footer-->
                             <li class="user-footer">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
+                                <a href="{{ route('profile.edit') }}" class="btn btn-default btn-flat">Profile</a>
+                                <form action="{{ route('logout') }}" method="post" class="d-inline float-end">
+                                    @csrf
+                                    <button type="submit" class="btn btn-default btn-flat">Logout</button>
+                                </form>
                             </li>
-                            <!--end::Menu Footer-->
                         </ul>
                     </li>
-                    <!--end::User Menu Dropdown-->
                 </ul>
                 <!--end::End Navbar Links-->
             </div>
@@ -148,12 +116,12 @@
                 <a href="{{ url('/') }}" class="brand-link">
                     <!--begin::Brand Image-->
                     <img
-                        src="{{ asset('dist/assets/img/AdminLTELogo.png') }}"
-                        alt="AdminLTE Logo"
-                        class="brand-image opacity-75 shadow" />
+                        src="{{ asset('dist/assets/img/logo.png') }}"
+                        alt="Logo"
+                        class="brand-image" />
                     <!--end::Brand Image-->
                     <!--begin::Brand Text-->
-                    <span class="brand-text fw-light">NontonApa</span>
+                    <span class="brand-text fw-bold">NontonApa</span>
                     <!--end::Brand Text-->
                 </a>
                 <!--end::Brand Link-->
@@ -212,7 +180,7 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-end">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">@yield('name_page', "Dashboard")</li>
                             </ol>
                         </div>
