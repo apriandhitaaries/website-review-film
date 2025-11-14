@@ -16,13 +16,7 @@ Aplikasi ini memiliki dua "dunia":
 
 ## 📊 Entity Relationship Diagram (ERD)
 
-Desain database aplikasi ini mengikuti relasi yang dinormalisasi untuk mengelola film, genre, aktor, dan ulasan.
-
-**PENTING (Biar Gambar Ini Muncul):**
-1.  Ubah nama *file* ERD kamu dari `ERD Aplikasi Review FIlm Update.png` jadi **`ERD.png`** (biar gampang & nggak ada spasi).
-2.  Bikin *folder* baru di proyekmu namanya `docs` (di *root* proyek).
-3.  Taruh *file* `ERD.png` itu ke dalem folder `docs/`.
-4.  *Commit* & *Push* folder `docs/` itu ke GitHub.
+Desain database aplikasi ini mengikuti relasi yang dinormalisasi untuk mengelola film, genre, aktor, dan review.
 
 ![ERD NontonApa](docs/ERD.png)
 
