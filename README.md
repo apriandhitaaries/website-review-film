@@ -10,7 +10,7 @@ Aplikasi ini memiliki dua "dunia":
 
 ## 🚀 Link Demo Aplikasi
 
-* **Link Video Demo:** `https://drive.google.com/file/d/1_J_LXUNUWh7wKHWNmNtkf6WXI3LXYr89/view?usp=drive_link`
+* **Link Video Demo:** https://drive.google.com/file/d/1_J_LXUNUWh7wKHWNmNtkf6WXI3LXYr89/view?usp=drive_link
 
 ---
 
