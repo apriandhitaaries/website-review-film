@@ -13,7 +13,7 @@ class FilmController extends Controller
     public function index()
     {
         $films = Film::with('genre')->paginate(10);
-        return view('films.index', ['films' => $films]);
+        return view('admin.films.index', ['films' => $films]);
     }
 
     public function create()
@@ -21,7 +21,7 @@ class FilmController extends Controller
         $genres = Genre::all();
         $casts = Cast::all();
 
-        return view('films.create', [
+        return view('admin.films.create', [
             'genres' => $genres,
             'casts' => $casts
         ]);
@@ -57,7 +57,7 @@ class FilmController extends Controller
 
         $film->filmCasts()->attach($validateData['casts']);
 
-        return redirect(route('films.index'));
+        return redirect(route('admin.films.index'));
     }
 
     public function edit(Film $film)
@@ -66,7 +66,7 @@ class FilmController extends Controller
         $film->load('filmCasts');
         $all_casts = Cast::all();
 
-        return view('films.edit', [
+        return view('admin.films.edit', [
             'film' => $film,
             'genres' => $genres,
             'all_casts' => $all_casts
@@ -110,7 +110,7 @@ class FilmController extends Controller
 
         $film->filmCasts()->sync($dataPivot);
 
-        return redirect(route('films.index'));
+        return redirect(route('admin.films.index'));
     }
 
     public function destroy(Film $film)
@@ -118,6 +118,6 @@ class FilmController extends Controller
         $film->filmCasts()->detach();
         Storage::disk('public')->delete($film->poster);
         $film->delete();
-        return redirect(route('films.index'));
+        return redirect(route('admin.films.index'));
     }
 }

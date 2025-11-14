@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <a href="{{ route('films.create') }}" class="btn btn-primary btn-sm mb-3">+ Tambah Data Film</a>
+        <a href="{{ route('admin.films.create') }}" class="btn btn-primary btn-sm mb-3">+ Tambah Data Film</a>
         <table id="films_table" class="table table-bordered">
             <thead>
                 <tr>
@@ -41,10 +41,10 @@
                         </div>
                     </td>
                     <td>
-                        <a href="{{ route('films.edit', $film->id) }}" class="btn btn-warning btn-sm">
+                        <a href="{{ route('admin.films.edit', $film->id) }}" class="btn btn-warning btn-sm">
                             <i class="bi bi-pencil-fill"></i>
                         </a>
-                        <form action="{{ route('films.destroy', $film->id) }}" method="POST" class="d-inline" id="delete-form-{{ $film->id }}">
+                        <form action="{{ route('admin.films.destroy', $film->id) }}" method="POST" class="d-inline" id="delete-form-{{ $film->id }}">
                             @csrf
                             @method('DELETE')
                             <button type="button" class="btn btn-danger btn-sm"

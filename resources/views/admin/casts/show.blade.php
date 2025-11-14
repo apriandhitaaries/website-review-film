@@ -11,7 +11,7 @@
         <p><strong>Bio:</strong> {{ $cast->bio }}</p>
     </div>
     <div class="card-footer">
-        <a href="{{ route('casts.index') }}" class="btn btn-secondary">Kembali</a>
+        <a href="{{ route('admin.casts.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
 </div>
 @endsection

@@ -140,19 +140,19 @@
                         data-accordion="false"
                         id="navigation">
                         <li class="nav-item menu-open">
-                            <a href="{{ route('films.index') }}" class="nav-link active">
+                            <a href="{{ route('admin.films.index') }}" class="nav-link active">
                                 <i class="nav-icon bi bi-table"></i>
                                 <p>Data Film</p>
                             </a>
                         </li>
                         <li class="nav-item menu-open">
-                            <a href="{{ route('casts.index') }}" class="nav-link active">
+                            <a href="{{ route('admin.casts.index') }}" class="nav-link active">
                                 <i class="nav-icon bi bi-table"></i>
                                 <p>Data Pemain Film</p>
                             </a>
                         </li>
                         <li class="nav-item menu-open">
-                            <a href="{{ route('genres.index') }}" class="nav-link active">
+                            <a href="{{ route('admin.genres.index') }}" class="nav-link active">
                                 <i class="nav-icon bi bi-table"></i>
                                 <p>Data Genre Film</p>
                             </a>

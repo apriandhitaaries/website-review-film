@@ -1,20 +1,19 @@
 @extends('layouts.master')
-@section('page_title', 'Edit Data Pemain')
-@section('name_page', "Edit Data Pemain")
+@section('page_title', 'Tambah Pemain Baru')
+@section('name_page', "Tambah Pemain Baru")
 @section('content')
 
 <div class="card">
-    <form action="{{ route('casts.update', $cast->id) }}" method="POST" id="form-edit-cast">
+    <form action="{{ route('admin.casts.store') }}" method="POST" id="form-create-cast">
         @csrf
-        @method('PUT')
 
         <div class="card-body">
             <div class="form-group">
                 <label for="nama">Nama</label>
                 <input type="text"
                     class="form-control @error('nama') is-invalid @enderror"
-                    name="nama" id="nama"
-                    value="{{ old('nama', $cast->nama) }}">
+                    name="nama" id="nama" placeholder="Masukkan Nama"
+                    value="{{ old('nama') }}">
                 @error('nama')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -24,8 +23,8 @@
                 <label for="umur">Umur</label>
                 <input type="number"
                     class="form-control @error('umur') is-invalid @enderror"
-                    name="umur" id="umur"
-                    value="{{ old('umur', $cast->umur) }}">
+                    name="umur" id="umur" placeholder="Masukkan Umur"
+                    value="{{ old('umur') }}">
                 @error('umur')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -35,16 +34,16 @@
                 <label for="bio">Bio</label>
                 <textarea class="form-control @error('bio') is-invalid @enderror"
                     name="bio" id="bio" rows="3"
-                    placeholder="Tulis bio singkat...">{{ old('bio', $cast->bio) }}</textarea>
+                    placeholder="Tulis bio singkat...">{{ old('bio') }}</textarea>
                 @error('bio')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-
         </div>
+
         <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Update</button>
-            <a href="{{ route('casts.index') }}" class="btn btn-default">Batal</a>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+            <a href="{{ route('admin.casts.index') }}" class="btn btn-default">Batal</a>
         </div>
     </form>
 </div>
@@ -53,7 +52,7 @@
 @push('scripts')
 <script>
     $(document).ready(function() {
-        $('#form-edit-cast').validate({
+        $('#form-create-cast').validate({
             rules: {
                 nama: {
                     required: true,

@@ -1,6 +1,6 @@
 @extends('layouts.master')
-@section('page_title', 'Daftar Genre Film')
-@section('name_page', "Daftar Genre Film")
+@section('page_title', 'Daftar Pemain Film')
+@section('name_page', "Daftar Pemain Film")
 
 @push('styles')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
@@ -9,32 +9,36 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <a href="{{ route('genres.create') }}" class="btn btn-primary btn-sm mb-3">+ Tambah Genre Film</a>
-        <table id="genres_table" class="table table-bordered">
+        <a href="{{ route('admin.casts.create') }}" class="btn btn-primary btn-sm mb-3">+ Tambah Data Pemain Film</a>
+        <table id="casts_table" class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Nama Genre</th>
+                    <th>Nama</th>
+                    <th>Umur</th>
+                    <th>Bio</th>
                     <th style="width: 120px">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($genres as $genre)
+                @foreach($casts as $cast)
                 <tr>
-                    <td>{{ $genre->nama }}</td>
+                    <td>{{ $cast->nama }}</td>
+                    <td>{{ $cast->umur }}</td>
+                    <td>{{ Str::limit($cast->bio, 50, '...') }}</td>
                     <td>
-                        <a href="{{ route('genres.show', $genre->id) }}" class="btn btn-info btn-sm">
+                        <a href="{{ route('admin.casts.show', $cast->id) }}" class="btn btn-info btn-sm">
                             <i class="bi bi-eye-fill"></i>
                         </a>
-                        <a href="{{ route('genres.edit', $genre->id) }}" class="btn btn-warning btn-sm">
+                        <a href="{{ route('admin.casts.edit', $cast->id) }}" class="btn btn-warning btn-sm">
                             <i class="bi bi-pencil-fill"></i>
                         </a>
-                        <form action="{{ route('genres.destroy', $genre->id) }}" method="POST" class="d-inline" id="delete-form-{{ $genre->id }}">
+                        <form action="{{ route('admin.casts.destroy', $cast->id) }}" method="POST" class="d-inline" id="delete-form-{{ $cast->id }}">
                             @csrf
                             @method('DELETE')
                             <button type="button" class="btn btn-danger btn-sm"
                                 onclick="deleteConfirmation(this)"
-                                data-id="{{ $genre->id }}"
-                                data-nama="{{ $genre->nama }}">
+                                data-id="{{ $cast->id }}"
+                                data-nama="{{ $cast->nama }}">
                                 <i class="bi bi-trash-fill"></i>
                             </button>
                         </form>
@@ -54,7 +58,7 @@
 
 <script>
     $(function() {
-        $("#genres_table").DataTable();
+        $("#casts_table").DataTable();
     });
 </script>
 

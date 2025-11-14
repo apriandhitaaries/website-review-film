@@ -1,28 +1,28 @@
 @extends('layouts.master')
-@section('page_title', 'Tambah Genre Film')
-@section('name_page', "Tambah Genre Film")
+@section('page_title', 'Edit Data Genre')
+@section('name_page', "Edit Data Genre")
 @section('content')
 
 <div class="card">
-    <form action="{{ route('genres.store') }}" method="POST" id="form-create-genre">
+    <form action="{{ route('admin.genres.update', $genre->id) }}" method="POST" id="form-edit-genre">
         @csrf
+        @method('PUT')
 
         <div class="card-body">
             <div class="form-group">
                 <label for="nama">Nama Genre</label>
                 <input type="text"
                     class="form-control @error('nama') is-invalid @enderror"
-                    name="nama" id="nama" placeholder="Masukkan Nama Genre"
-                    value="{{ old('nama') }}">
+                    name="nama" id="nama"
+                    value="{{ old('nama', $genre->nama) }}">
                 @error('nama')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
         </div>
-
         <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Simpan</button>
-            <a href="{{ route('genres.index') }}" class="btn btn-default">Batal</a>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a href="{{ route('admin.genres.index') }}" class="btn btn-default">Batal</a>
         </div>
     </form>
 </div>
@@ -31,7 +31,7 @@
 @push('scripts')
 <script>
     $(document).ready(function() {
-        $('#form-create-genre').validate({
+        $('#form-edit-genre').validate({
             rules: {
                 nama: {
                     required: true,

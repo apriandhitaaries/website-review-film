@@ -11,12 +11,12 @@ class GenreController extends Controller
     public function index()
     {
         $genres = Genre::all();
-        return view('genres.index', ['genres' => $genres]);
+        return view('admin.genres.index', ['genres' => $genres]);
     }
 
     public function create()
     {
-        return view('genres.create');
+        return view('admin.genres.create');
     }
 
     public function store(Request $request)
@@ -26,18 +26,18 @@ class GenreController extends Controller
         ]);
 
         Genre::create($validateData);
-        return redirect(route('genres.index'));
+        return redirect(route('admin.genres.index'));
     }
 
     public function show(Genre $genre)
     {
         $genre->load('films');
-        return view('genres.show', ['genre' => $genre]);
+        return view('admin.genres.show', ['genre' => $genre]);
     }
 
     public function edit(Genre $genre)
     {
-        return view('genres.edit', ['genre' => $genre]);
+        return view('admin.genres.edit', ['genre' => $genre]);
     }
 
     public function update(Request $request, Genre $genre)
@@ -47,12 +47,12 @@ class GenreController extends Controller
         ]);
 
         $genre->update($validateData);
-        return redirect(route('genres.index'));
+        return redirect(route('admin.genres.index'));
     }
 
     public function destroy(Genre $genre)
     {
         $genre->delete();
-        return redirect(route('genres.index'));
+        return redirect(route('admin.genres.index'));
     }
 }

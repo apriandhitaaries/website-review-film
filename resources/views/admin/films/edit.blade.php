@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="card">
-    <form action="{{ route('films.update', $film->id) }}" method="POST" enctype="multipart/form-data" id="form-edit-film">
+    <form action="{{ route('admin.films.update', $film->id) }}" method="POST" enctype="multipart/form-data" id="form-edit-film">
         @csrf
         @method('PUT')
 
@@ -143,7 +143,7 @@
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Simpan</button>
-            <a href="{{ route('films.index') }}" class="btn btn-default">Batal</a>
+            <a href="{{ route('admin.films.index') }}" class="btn btn-default">Batal</a>
         </div>
     </form>
 </div>

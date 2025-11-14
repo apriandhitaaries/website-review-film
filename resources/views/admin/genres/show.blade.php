@@ -30,7 +30,6 @@
                     <td>{{ $film->tahun }}</td>
                 </tr>
             @empty
-                {{-- Ini akan muncul kalau belum ada film di genre ini --}}
                 <tr>
                     <td colspan="4" class="text-center">
                         Belum ada film yang ditambahkan ke genre ini.
@@ -42,7 +41,7 @@
     </div>
 
     <div class="card-footer">
-        <a href="{{ route('genres.index') }}" class="btn btn-secondary">Kembali</a>
+        <a href="{{ route('admin.genres.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
 </div>
 @endsection
