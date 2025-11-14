@@ -1,5 +1,8 @@
 @extends('layouts.public')
-
+@section('navbar_class', 'navbar-dark navbar-on-hero')
+@section('navbar_guest_class', 'btn-outline-light')
+@section('navbar_text_color', 'text-white')
+@section('dropdown_menu_class', 'dropdown-menu-dark')
 @push('styles')
 
 @section('content')
@@ -26,12 +29,11 @@
                     style="height: 300px; object-fit: cover;">
 
                 <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                        <h5 class="card-title fs-6">{{ $film->judul }}</h5>
-                        <span class="text-muted small">{{ $film->tahun }}</span>
+                    <div class="justify-content-between align-items-baseline">
+                        <h5 class="card-title fs-6 text-center">{{ $film->judul }} ({{ $film->tahun }})</h5>
                     </div>
 
-                    <p class="card-text">
+                    <p class="card-text text-center">
                         <span class="badge bg-secondary">{{ $film->genre ? $film->genre->nama : 'N/A' }}</span>
                     </p>
                 </div>

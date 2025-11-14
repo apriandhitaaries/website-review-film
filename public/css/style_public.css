@@ -21,7 +21,7 @@
     z-index: 10;
 }
 
-.navbar {
+.navbar-on-hero {
     position: absolute;
     width: 100%;
     z-index: 100;
