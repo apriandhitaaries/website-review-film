@@ -10,6 +10,7 @@ Aplikasi ini memiliki dua "dunia":
 
 ## 🚀 Link Demo Aplikasi
 
+* **Link Deploy (Railway):** https://website-review-film-production.up.railway.app/
 * **Link Video Demo:** https://drive.google.com/file/d/1_J_LXUNUWh7wKHWNmNtkf6WXI3LXYr89/view?usp=drive_link
 
 ---
@@ -54,8 +55,8 @@ Desain database aplikasi ini mengikuti relasi yang dinormalisasi untuk mengelola
 * **Template Frontend:** Bootstrap 5
 * **Autentikasi:** Laravel Breeze
 * **Paket/Library Tambahan:**
-    1.  **DataTables:** 
-    2.  **jQuery Validation:**
-    3.  **jQuery Repeater:**
-    4.  **SweetAlert2:** 
+    1.  **DataTables** 
+    2.  **jQuery Validation**
+    3.  **jQuery Repeater**
+    4.  **SweetAlert2** 
     5. **Bootstrap Star Rating**
