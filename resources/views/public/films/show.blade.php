@@ -13,7 +13,7 @@
         position: relative;
         height: 40vh;
         background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url("{{ asset('storage/' . $film->poster) }}");
+        url("{{ Storage::disk('s3')->url($film->poster) }}");
         background-size: cover;
         background-position: center 40%;
         color: white;
@@ -41,7 +41,7 @@
 <div class="container my-5">
     <div class="row">
         <div class="col-md-4">
-            <img src="{{ asset('storage/' . $film->poster) }}" class="img-fluid rounded shadow-sm" alt="Poster">
+            <img src="{{ Storage::disk('s3')->url($film->poster) }}" class="img-fluid rounded shadow-sm" alt="Poster">
             <h5 class="mt-4">Pemain</h5>
             <hr>
             <ul class="list-group list-group-flush">

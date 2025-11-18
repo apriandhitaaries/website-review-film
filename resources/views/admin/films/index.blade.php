@@ -23,7 +23,7 @@
                     <td>
                         <div class="d-flex">
                             <div class="flex-shrink-0 me-3">
-                                <img src="{{ asset('storage/' . $film->poster) }}"
+                                <img src="{{ Storage::disk('s3')->url($film->poster) }}"
                                     alt="{{ $film->judul }}"
                                     style="width: 60px; height: 90px; object-fit: cover; border-radius: 4px;">
                             </div>

@@ -40,7 +40,7 @@ class FilmController extends Controller
             'casts.*.peran' => 'required|string|max:255'
         ]);
 
-        $path = Storage::disk('public')->putFile('posters', $request->file('poster'));
+        $path = Storage::disk('s3')->putFile('/', $request->file('poster'));
         $validateData['poster'] = $path;
 
         $filmData = collect($validateData)
@@ -88,11 +88,11 @@ class FilmController extends Controller
 
         if ($request->hasFile('poster')) {
             $old_path = $film->poster;
-            $path = Storage::disk('public')->putFile('posters', $request->file('poster'));
+            $path = Storage::disk('s3')->putFile('/', $request->file('poster'));
             $validateData['poster'] = $path;
 
             if ($old_path) {
-                Storage::disk('public')->delete($old_path);
+                Storage::disk('s3')->delete($old_path);
             }
         }
 
@@ -116,7 +116,7 @@ class FilmController extends Controller
     public function destroy(Film $film)
     {
         $film->filmCasts()->detach();
-        Storage::disk('public')->delete($film->poster);
+        Storage::disk('s3')->delete($film->poster);
         $film->delete();
         return redirect(route('admin.films.index'));
     }

@@ -41,7 +41,7 @@
             <div class="form-group">
                 <label>Poster Saat Ini</label>
                 <div>
-                    <img src="{{ asset('storage/' . $film->poster) }}" alt="Poster" style="width: 100px; border-radius: 4px;">
+                    <img src="{{ Storage::disk('s3')->url($film->poster) }}" alt="Poster" style="width: 100px; border-radius: 4px;">
                 </div>
             </div>
 

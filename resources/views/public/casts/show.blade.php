@@ -24,7 +24,7 @@
             <div class="list-group">
                 @forelse ($cast->films as $film)
                 <a href="{{ route('films.show', $film->id) }}" class="list-group-item list-group-item-action d-flex align-items-center">
-                    <img src="{{ asset('storage/' . $film->poster) }}"
+                    <img src="{{ Storage::disk('s3')->url($film->poster) }}"
                         alt="{{ $film->judul }}"
                         style="width: 50px; height: 75px; object-fit: cover; border-radius: 4px;"
                         class="me-3">

@@ -23,7 +23,7 @@
         @forelse ($films as $film)
         <div class="col">
             <div class="card h-100 shadow-sm">
-                <img src="{{ asset('storage/' . $film->poster) }}"
+                <img src="{{ Storage::disk('s3')->url($film->poster) }}"
                     class="card-img-top"
                     alt="{{ $film->judul }}"
                     style="height: 300px; object-fit: cover;">
